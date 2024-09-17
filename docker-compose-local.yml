@@ -1,0 +1,22 @@
+version: '3'
+
+services:  
+  hackaton:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: acme
+      POSTGRES_PASSWORD: acme
+      POSTGRES_DB: hackaton
+    ports:
+      - "5433:5432"
+    volumes:
+      - hackaton_data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+
+volumes:
+  hackaton_data:
+
+networks: 
+  postgres-network:
+    driver: bridge
