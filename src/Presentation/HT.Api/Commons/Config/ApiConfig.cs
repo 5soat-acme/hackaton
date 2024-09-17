@@ -1,9 +1,7 @@
 using System.Text.Json.Serialization;
 using HT.Api.Commons.Extensions;
-using HT.Api.Contexts.Medicos.Config;
-using HT.Api.Contexts.Produtos.Config;
-using HT.WebApi.Commons.Identity;
-using HT.WebApi.Commons.Users;
+using HT.Api.Contexts.Cadastros.Config;
+using HT.Api.Contexts.Usuarios.Config;
 
 namespace HT.Api.Commons.Config;
 
@@ -18,12 +16,10 @@ public static class ApiConfig
 
         services.AddEventBusConfig();
 
-        services.RegisterServicesPacientes(configuration);
-        services.RegisterServicesMedicos(configuration);
+        services.RegisterServicesCadastros(configuration);
+        services.RegisterServicesUsuarios();
 
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-        services.AddScoped<IUserApp, UserApp>();
-        services.AddJwtConfiguration(configuration);
+        services.AddIdentityConfig(configuration);
 
         return services;
     }
@@ -41,6 +37,8 @@ public static class ApiConfig
         });
 
         app.MapControllers();
+
+        app.UseIdentityConfig();
 
         app.UseMiddleware<ExceptionMiddleware>();
 

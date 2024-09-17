@@ -32,10 +32,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Services\HT.Medicos.Application\HT.Medicos.Application.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Medicos.Infra\HT.Medicos.Infra.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Pacientes.Application\HT.Pacientes.Application.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Pacientes.Infra\HT.Pacientes.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\HT.Cadastros.Application\HT.Cadastros.Application.csproj" />
+        <ProjectReference Include="..\..\Services\HT.Cadastros.Infra\HT.Cadastros.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\HT.Usuarios.Infra\HT.Usuarios.Infra.csproj" />
         <ProjectReference Include="..\..\Shared\HT.Core.Commons\HT.Core.Commons.csproj" />
         <ProjectReference Include="..\..\Shared\HT.Infra.Commons\HT.Infra.Commons.csproj" />
         <ProjectReference Include="..\..\Shared\HT.WebApi.Commons\HT.WebApi.Commons.csproj" />

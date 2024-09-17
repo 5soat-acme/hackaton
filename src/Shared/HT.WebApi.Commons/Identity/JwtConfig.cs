@@ -1,4 +1,5 @@
 using System.Text;
+using HT.Core.Commons.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +41,12 @@ public static class JwtConfig
                 ValidIssuer = identitySettings.Issuer,
                 ValidateLifetime = true
             };
+        });
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AccessPolicy.MEDICOPOLICY, policy => policy.RequireRole(TipoAcesso.MEDICO.ToString()));
+            options.AddPolicy(AccessPolicy.PACIENTEPOLICY, policy => policy.RequireRole(TipoAcesso.PACIENTE.ToString()));
         });
     }
 
