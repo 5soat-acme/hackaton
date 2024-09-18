@@ -29,12 +29,9 @@ with Diagram("Hackaton - K8S", filename="diagrama_k8s", outformat=["png"], show=
             replicaSet = ReplicaSet("rs")
             deployment = Secret("secrets") - Deployment("deploy")
             hpa = HPA("hpa")
-            secret_aws = Secret("secrets-aws")
 
 
     clients >> ingress_controller >> ingress
     ingress >> svc_api
-
-    secret_aws - deployment
     
     svc_api >> pods_api << replicaSet << deployment << hpa
