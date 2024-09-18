@@ -16,13 +16,23 @@ public class MedicoRepository : IMedicoRepository
 
     public IUnitOfWork UnitOfWork => _dbContext;
 
-    public void Criar(Medico medico)
+    public async Task Criar(Medico medico)
     {
-        _dbContext.Medicos.AddAsync(medico);
+        await _dbContext.Medicos.AddAsync(medico);
     }
 
     public async Task<IEnumerable<Medico>> Buscar()
     {
         return await _dbContext.Medicos.ToListAsync();
+    }
+
+    public async Task<Medico?> BuscarPorEmail(string email)
+    {
+        return await _dbContext.Medicos.FirstOrDefaultAsync(x => x.Email == email);
+    }
+
+    public async Task<Medico?> BuscarPorCpf(string cpf)
+    {
+        return await _dbContext.Medicos.FirstOrDefaultAsync(x => x.Cpf.Numero == cpf);
     }
 }

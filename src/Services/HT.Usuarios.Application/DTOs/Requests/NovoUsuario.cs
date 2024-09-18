@@ -13,4 +13,5 @@ public class NovoUsuario
     public string Senha { get; set; }
 
     public TipoAcesso TipoAcesso { get; set; }
+    public Guid Id { get; set; }
 }

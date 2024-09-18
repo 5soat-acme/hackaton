@@ -5,6 +5,8 @@ namespace HT.Cadastros.Domain.Repository;
 
 public interface IMedicoRepository : IRepository<Medico>
 {
-    void Criar(Medico medico);
+    Task Criar(Medico medico);
     Task<IEnumerable<Medico>> Buscar();
+    Task<Medico?> BuscarPorEmail(string email);
+    Task<Medico?> BuscarPorCpf(string cpf);
 }

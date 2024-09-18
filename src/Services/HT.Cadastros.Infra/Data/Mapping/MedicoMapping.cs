@@ -17,20 +17,24 @@ public class MedicoMapping : IEntityTypeConfiguration<Medico>
             .IsRequired()
             .HasColumnType("varchar(100)");
 
-        builder.OwnsOne(c => c.Cpf, tf =>
+        builder.OwnsOne(p => p.Cpf, cpf =>
         {
-            tf.Property(c => c.Numero)
+            cpf.Property(c => c.Numero)
+                .IsRequired()
                 .HasMaxLength(Cpf.CpfMaxLength)
                 .HasColumnName("Cpf")
                 .HasColumnType($"varchar({Cpf.CpfMaxLength})");
         });
 
         builder.Property(p => p.NroCrm)
-           .IsRequired()
-           .HasColumnType("varchar(15)");
+            .IsRequired()
+            .HasColumnType("varchar(15)");
 
         builder.Property(p => p.Email)
             .IsRequired()
             .HasColumnType("varchar(100)");
+
+        builder.HasIndex(p => p.Email)
+            .IsUnique();
     }
 }

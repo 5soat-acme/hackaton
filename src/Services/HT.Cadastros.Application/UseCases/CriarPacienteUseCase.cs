@@ -8,6 +8,8 @@ using HT.Core.Commons.ValueObjects;
 using HT.Usuarios.Application.Services.Interfaces;
 using HT.Usuarios.Application.DTOs.Requests;
 using HT.Core.Commons.Identity;
+using System.ComponentModel.DataAnnotations;
+using HT.Core.Commons.Utils;
 
 namespace HT.Cadastros.Application.UseCases;
 
@@ -25,17 +27,40 @@ public class CriarPacienteUseCase : CommonUseCase, ICriarPacienteUseCase
 
     public async Task<OperationResult<Guid>> Handle(CriarPacienteDto dto)
     {
+        if (dto.Senha != dto.ConfirmacaoSenha) throw new ValidationException("Senhas não correspondem");
+        if (!await ValidarPaciente(dto)) return OperationResult<Guid>.Failure(ValidationResult);
+
         var paciente = new Paciente(dto.Nome, new Cpf(dto.Cpf), dto.Email);
-        _pacienteRepository.Criar(paciente);
+        await _pacienteRepository.Criar(paciente);
         await PersistData(_pacienteRepository.UnitOfWork);
 
         await _acessoAppService.CriarUsuario(new NovoUsuario
         {
             Email = dto.Email,
             Senha = dto.Senha,
-            TipoAcesso = TipoAcesso.PACIENTE
+            TipoAcesso = TipoAcesso.PACIENTE,
+            Id = paciente.Id
         });
 
         return OperationResult<Guid>.Success(paciente.Id);
+    }
+
+    private async Task<bool> ValidarPaciente(CriarPacienteDto dto)
+    {
+        var paciente = await _pacienteRepository.BuscarPorEmail(dto.Email);
+        if (paciente is not null)
+        {
+            AddError("Já existe paciente cadastrado com esse email");
+            return false;
+        }
+
+        paciente = await _pacienteRepository.BuscarPorCpf(dto.Cpf.SomenteNumeros());
+        if (paciente is not null)
+        {
+            AddError("Já existe paciente cadastrado com esse CPF");
+            return false;
+        }
+
+        return true;
     }
 }

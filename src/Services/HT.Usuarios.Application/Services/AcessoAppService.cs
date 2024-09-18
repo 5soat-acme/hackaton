@@ -41,6 +41,8 @@ public class AcessoAppService : IAcessoAppService
             UserName = novoUsuario.Email,
             Email = novoUsuario.Email,
             EmailConfirmed = true,
+            TipoAcesso = novoUsuario.TipoAcesso.ToString(),
+            CorrelacaoId = novoUsuario.Id
         };
 
         await CriarRole(novoUsuario.TipoAcesso.ToString());
@@ -102,7 +104,7 @@ public class AcessoAppService : IAcessoAppService
     {
         var userRoles = await _userManager.GetRolesAsync(user);
 
-        claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
+        claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.CorrelacaoId.ToString()));
         claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
         claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
         claims.Add(new Claim(JwtRegisteredClaimNames.Nbf,

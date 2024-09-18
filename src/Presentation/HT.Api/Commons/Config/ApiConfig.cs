@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using HT.Api.Commons.Extensions;
+using HT.Api.Contexts.Agendas.Config;
 using HT.Api.Contexts.Cadastros.Config;
 using HT.Api.Contexts.Usuarios.Config;
 
@@ -18,6 +19,7 @@ public static class ApiConfig
 
         services.RegisterServicesCadastros(configuration);
         services.RegisterServicesUsuarios();
+        services.RegisterServicesAgendas(configuration);
 
         services.AddIdentityConfig(configuration);
 
@@ -26,6 +28,8 @@ public static class ApiConfig
 
     public static WebApplication UseApiConfig(this WebApplication app)
     {
+        app.RunMigrations();
+
         app.UseSwaggerConfig();
 
         app.UseHttpsRedirection();

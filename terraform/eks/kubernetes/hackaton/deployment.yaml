@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hackaton-api
+spec:
+  selector:
+    matchLabels:
+      app: hackaton-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0%
+  template:
+    metadata:
+      labels:
+        app: hackaton-api
+    spec:
+      volumes:
+        - name: appsettings
+          secret:
+            secretName: hackaton-api-secrets
+            defaultMode: 420
+        - name: tz-config
+          hostPath:
+            path: /usr/share/zoneinfo/America/Sao_Paulo
+            type: File
+      containers:
+        - name: hackaton-api
+          image: 5soatacme/hackaton
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+            - name: AWS_ACCESSKEY
+              valueFrom:
+                secretKeyRef:
+                  name: hackaton-aws-secrets
+                  key: AWS_ACCESSKEY
+            - name: AWS_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: hackaton-aws-secrets
+                  key: AWS_SECRETKEY
+            - name: AWS_SESSIONTOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hackaton-aws-secrets
+                  key: AWS_SESSIONTOKEN
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: hackaton-aws-secrets
+                  key: AWS_REGION
+          volumeMounts:
+            - name: appsettings
+              mountPath: /app/appsettings.json
+              subPath: appsettings.json
+            - name: tz-config
+              mountPath: /etc/localtime
+          resources:
+            limits:
+              cpu: "240m"
+              memory: "400Mi"
+            requests:
+              cpu: "60m"
+              memory: "180Mi"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      imagePullSecrets:
+        - name: regcred

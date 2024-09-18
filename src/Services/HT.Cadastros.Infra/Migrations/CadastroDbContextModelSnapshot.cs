@@ -42,6 +42,9 @@ namespace HT.Cadastros.Infra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Medicos", (string)null);
                 });
 
@@ -60,6 +63,9 @@ namespace HT.Cadastros.Infra.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Pacientes", (string)null);
                 });

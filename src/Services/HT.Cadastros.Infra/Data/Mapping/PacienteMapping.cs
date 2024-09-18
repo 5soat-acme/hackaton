@@ -17,9 +17,10 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
             .IsRequired()
             .HasColumnType("varchar(100)");
 
-        builder.OwnsOne(c => c.Cpf, tf =>
+        builder.OwnsOne(p => p.Cpf, cpf =>
         {
-            tf.Property(c => c.Numero)
+            cpf.Property(c => c.Numero)
+                .IsRequired()
                 .HasMaxLength(Cpf.CpfMaxLength)
                 .HasColumnName("Cpf")
                 .HasColumnType($"varchar({Cpf.CpfMaxLength})");
@@ -28,5 +29,8 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
         builder.Property(p => p.Email)
             .IsRequired()
             .HasColumnType("varchar(100)");
+
+        builder.HasIndex(p => p.Email)
+            .IsUnique();
     }
 }

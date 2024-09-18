@@ -14,14 +14,14 @@ public class Cpf
     public Cpf(string numero)
     {
         if (!Validar(numero)) throw new DomainException("CPF inválido");
-        Numero = numero.SomenteNumeros(numero);
+        Numero = numero.SomenteNumeros();
     }
 
     public string Numero { get; private set; }
 
     public static bool Validar(string cpf)
     {
-        cpf = cpf.SomenteNumeros(cpf);
+        cpf = cpf.SomenteNumeros();
 
         if (cpf.Length > 11)
             return false;
