@@ -1,5 +1,5 @@
 resource "aws_rds_cluster" "aurora-cluster" {
-  cluster_identifier     = "${var.projectName}"
+  cluster_identifier     = var.projectName
   engine                 = "aurora-postgresql"
   engine_version         = "15.4"
   availability_zones     = ["${var.availabilityZoneA}", "${var.availabilityZoneB}"]
