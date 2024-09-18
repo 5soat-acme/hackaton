@@ -1,4 +1,4 @@
-name: Terraform CI/CD
+name: Terraform Database CI/CD
 
 on:
   workflow_dispatch:
