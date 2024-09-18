@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hackaton-api
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8080
+      targetPort: 80
+  selector:
+    app: hackaton-api

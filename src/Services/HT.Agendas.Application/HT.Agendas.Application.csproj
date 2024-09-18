@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HT.Agendas.Domain\HT.Agendas.Domain.csproj" />
+    <ProjectReference Include="..\HT.Cadastros.Domain\HT.Cadastros.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

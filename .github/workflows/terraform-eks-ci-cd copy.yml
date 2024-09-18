@@ -1,0 +1,69 @@
+name: Terraform EKS CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/eks/**'
+  pull_request:
+    paths:
+      - 'terraform/eks/**'
+
+jobs:
+  terraform:
+    name: Terraform Deployment
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform/eks
+    permissions:
+        pull-requests: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        AWS-ACCESS-KEY-ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS-SECRET-ACCESS-KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS-SESSION-TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        AWS-REGION: ${{ secrets.AWS_REGION }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+    
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+      run: terraform plan -no-color -input=false
+      continue-on-error: true
+
+    - name: Terraform Apply
+      if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
+      run: terraform apply -auto-approve -input=false
+
+    - name: Apply Manifest K8S - EKS
+      if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
+      run: |
+        aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name easy-food
+        kubectl apply -f "./kubernetes/secret_aws.yaml"
+        kubectl apply -f "./kubernetes/hackaton/secret.yaml"
+        kubectl apply -f "./kubernetes/hackaton/hpa.yaml"
+        kubectl apply -f "./kubernetes/hackaton/deployment.yaml"
+        kubectl apply -f "./kubernetes/hackaton/service.yaml"
+        kubectl apply -f "./kubernetes/ingress.yaml"
