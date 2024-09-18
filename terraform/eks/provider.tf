@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 provider "kubernetes" {
   host                   = aws_eks_cluster.hackaton-eks.endpoint
   cluster_ca_certificate = base64decode(aws_eks_cluster.hackaton-eks.certificate_authority[0].data)
