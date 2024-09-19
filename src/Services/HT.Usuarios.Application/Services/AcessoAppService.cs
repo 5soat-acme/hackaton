@@ -1,6 +1,6 @@
 using HT.Core.Commons.Communication;
+using HT.Core.Commons.Extensions;
 using HT.Core.Commons.Identity;
-using HT.Infra.Commons.Extensions;
 using HT.Usuarios.Application.DTOs.Requests;
 using HT.Usuarios.Application.DTOs.Responses;
 using HT.Usuarios.Application.Services.Interfaces;
@@ -42,6 +42,7 @@ public class AcessoAppService : IAcessoAppService
             Email = novoUsuario.Email,
             EmailConfirmed = true,
             TipoAcesso = novoUsuario.TipoAcesso.ToString(),
+            Cpf = novoUsuario.Cpf,
             CorrelacaoId = novoUsuario.Id
         };
 

@@ -1,5 +1,4 @@
-﻿using HT.Core.Commons.Messages;
-using HT.Core.Commons.Repository;
+﻿using HT.Core.Commons.Repository;
 using HT.Cadastros.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +27,6 @@ public sealed class CadastroDbContext : DbContext, IUnitOfWork
             relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CadastroDbContext).Assembly);
-        modelBuilder.Ignore<Event>();
 
         base.OnModelCreating(modelBuilder);
     }

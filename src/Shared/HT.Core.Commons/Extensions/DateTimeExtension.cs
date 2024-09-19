@@ -1,4 +1,4 @@
-namespace HT.Infra.Commons.Extensions;
+namespace HT.Core.Commons.Extensions;
 
 public static class DateTimeExtension
 {

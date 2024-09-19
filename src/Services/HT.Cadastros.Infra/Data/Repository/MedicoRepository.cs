@@ -25,14 +25,4 @@ public class MedicoRepository : IMedicoRepository
     {
         return await _dbContext.Medicos.ToListAsync();
     }
-
-    public async Task<Medico?> BuscarPorEmail(string email)
-    {
-        return await _dbContext.Medicos.FirstOrDefaultAsync(x => x.Email == email);
-    }
-
-    public async Task<Medico?> BuscarPorCpf(string cpf)
-    {
-        return await _dbContext.Medicos.FirstOrDefaultAsync(x => x.Cpf.Numero == cpf);
-    }
 }

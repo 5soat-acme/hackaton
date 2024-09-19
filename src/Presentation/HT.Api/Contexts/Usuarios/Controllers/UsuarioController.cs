@@ -19,7 +19,7 @@ public class UsuarioController : CustomControllerBase
     /// <summary>
     ///     Gera token de acesso para utilizar o sistema
     /// </summary>
-    /// <response code="200">Paciente cadastrado.</response>
+    /// <response code="200">Token gerado.</response>
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RespostaTokenAcesso))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [Produces("application/json")]

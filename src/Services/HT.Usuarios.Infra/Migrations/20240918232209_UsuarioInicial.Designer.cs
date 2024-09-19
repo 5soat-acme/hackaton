@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HT.Usuarios.Infra.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    [Migration("20240918004444_UsuarioInicial")]
+    [Migration("20240918232209_UsuarioInicial")]
     partial class UsuarioInicial
     {
         /// <inheritdoc />
@@ -39,6 +39,10 @@ namespace HT.Usuarios.Infra.Migrations
 
                     b.Property<Guid>("CorrelacaoId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)

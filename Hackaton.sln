@@ -32,8 +32,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Cadastros.Infra", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Cadastros.Application", "src\Services\HT.Cadastros.Application\HT.Cadastros.Application.csproj", "{5E542E9D-523D-49D5-AB70-E76840838BC3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Infra.Commons", "src\Shared\HT.Infra.Commons\HT.Infra.Commons.csproj", "{807825CE-FDF9-4BA6-8D4B-5BC22648D672}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{13BEECA4-7942-4A3A-8F81-41A4D3F73473}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agendas", "Agendas", "{EEA955FC-6F27-4EC3-86C5-F5891714EE10}"
@@ -60,23 +58,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cadastros", "Cadastros", "{50900296-CC05-4B44-8A46-92CC98B34765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Cadastros.Domain.Test", "test\Unit\HT.Cadastros.Domain.Test\HT.Cadastros.Domain.Test.csproj", "{21F8F013-B408-4CEA-B900-D14138F85E50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Cadastros.Domain.Test", "test\Unit\HT.Cadastros.Domain.Test\HT.Cadastros.Domain.Test.csproj", "{21F8F013-B408-4CEA-B900-D14138F85E50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Cadastros.Application.Test", "test\Unit\HT.Cadastros.Application.Test\HT.Cadastros.Application.Test.csproj", "{E3181B45-C2E2-4C8B-A602-47C2FA182528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Cadastros.Application.Test", "test\Unit\HT.Cadastros.Application.Test\HT.Cadastros.Application.Test.csproj", "{E3181B45-C2E2-4C8B-A602-47C2FA182528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Cadastros.Infra.Test", "test\Unit\HT.Cadastros.Infra.Test\HT.Cadastros.Infra.Test.csproj", "{BFE0EF0C-D80A-4B45-B783-C389EEB30321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Cadastros.Infra.Test", "test\Unit\HT.Cadastros.Infra.Test\HT.Cadastros.Infra.Test.csproj", "{BFE0EF0C-D80A-4B45-B783-C389EEB30321}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agendas", "Agendas", "{CE2D91DC-C0D2-4C06-AD2D-1008752460F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Agendas.Domain.Test", "test\Unit\HT.Agendas.Domain.Test\HT.Agendas.Domain.Test.csproj", "{2872DCC1-931D-4A45-AEBF-09B7AC100BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Agendas.Domain.Test", "test\Unit\HT.Agendas.Domain.Test\HT.Agendas.Domain.Test.csproj", "{2872DCC1-931D-4A45-AEBF-09B7AC100BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Agendas.Application.Test", "test\Unit\HT.Agendas.Application.Test\HT.Agendas.Application.Test.csproj", "{3F8F8E2B-981F-415C-8722-6AF7A9C13715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Agendas.Application.Test", "test\Unit\HT.Agendas.Application.Test\HT.Agendas.Application.Test.csproj", "{3F8F8E2B-981F-415C-8722-6AF7A9C13715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Agendas.Infra.Test", "test\Unit\HT.Agendas.Infra.Test\HT.Agendas.Infra.Test.csproj", "{64B1D16E-86F6-4737-9DA1-7AC50D97EE44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Agendas.Infra.Test", "test\Unit\HT.Agendas.Infra.Test\HT.Agendas.Infra.Test.csproj", "{64B1D16E-86F6-4737-9DA1-7AC50D97EE44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{A6E6BBE3-68CE-4FEB-B682-B461D2B516EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Test.Utils", "test\Utils\HT.Test.Utils\HT.Test.Utils.csproj", "{209C1131-8F63-4B3D-A6EF-209A4C703217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Test.Utils", "test\Utils\HT.Test.Utils\HT.Test.Utils.csproj", "{209C1131-8F63-4B3D-A6EF-209A4C703217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,10 +106,6 @@ Global
 		{5E542E9D-523D-49D5-AB70-E76840838BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E542E9D-523D-49D5-AB70-E76840838BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E542E9D-523D-49D5-AB70-E76840838BC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{807825CE-FDF9-4BA6-8D4B-5BC22648D672}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B6B4747-42F7-4006-A229-B97D2E1918F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B6B4747-42F7-4006-A229-B97D2E1918F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B6B4747-42F7-4006-A229-B97D2E1918F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -176,7 +170,6 @@ Global
 		{09E1B1A6-5879-4C12-8D0E-AFA5BA13036B} = {B362D413-4175-4F96-BFA0-E4B072965787}
 		{927AAFA1-681F-4C89-90EB-B587B193FCDC} = {B362D413-4175-4F96-BFA0-E4B072965787}
 		{5E542E9D-523D-49D5-AB70-E76840838BC3} = {B362D413-4175-4F96-BFA0-E4B072965787}
-		{807825CE-FDF9-4BA6-8D4B-5BC22648D672} = {ADA9D63D-AF53-4AAD-9A3C-49C95B373A36}
 		{13BEECA4-7942-4A3A-8F81-41A4D3F73473} = {13ABF460-2024-4387-89C6-9DCE83BF78A6}
 		{EEA955FC-6F27-4EC3-86C5-F5891714EE10} = {B790782A-FF16-4B8A-9993-23CC03C96503}
 		{CD67CF40-B6C0-4A1C-811A-2CE15579510E} = {B790782A-FF16-4B8A-9993-23CC03C96503}

@@ -5,5 +5,6 @@ namespace HT.Usuarios.Infra.Extensions;
 public class ApplicationUser : IdentityUser
 {
     public string TipoAcesso { get; set; }
+    public string Cpf { get; set; }
     public Guid CorrelacaoId { get; set; }
 }

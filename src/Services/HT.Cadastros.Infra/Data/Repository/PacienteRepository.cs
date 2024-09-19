@@ -25,14 +25,4 @@ public sealed class PacienteRepository : IPacienteRepository
     {
         return await _dbContext.Pacientes.ToListAsync();
     }
-
-    public async Task<Paciente?> BuscarPorEmail(string email)
-    {
-        return await _dbContext.Pacientes.FirstOrDefaultAsync(x => x.Email == email);
-    }
-
-    public async Task<Paciente?> BuscarPorCpf(string cpf)
-    {
-        return await _dbContext.Pacientes.FirstOrDefaultAsync(x => x.Cpf.Numero == cpf);
-    }
 }

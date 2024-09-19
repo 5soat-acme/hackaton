@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\HT.Core.Commons\HT.Core.Commons.csproj" />
-    <ProjectReference Include="..\..\Shared\HT.Infra.Commons\HT.Infra.Commons.csproj" />
     <ProjectReference Include="..\HT.Usuarios.Infra\HT.Usuarios.Infra.csproj" />
   </ItemGroup>
 
