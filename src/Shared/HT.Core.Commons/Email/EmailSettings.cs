@@ -2,8 +2,6 @@
 
 public class EmailSettings
 {
-    public const string EmailIdentityChave = "EmailIdentity";
-
     public string Host { get; set; }
     public int Port { get; set; }
     public string UserName { get; set; }
@@ -11,5 +9,4 @@ public class EmailSettings
     public string FromEmail { get; set; }
     public string FromName { get; set; }
     public bool EnableSsl { get; set; }
-
 }
