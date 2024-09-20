@@ -4,6 +4,7 @@ using HT.WebApi.Commons.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HT.WebApi.Commons.Identity;
+using HT.WebApi.Commons.Email;
 
 namespace HT.Api.Commons.Config;
 
@@ -32,6 +33,7 @@ public static class IdentityConfig
             .AddDefaultTokenProviders();
 
         services.AddJwtConfiguration(configuration);
+        services.AddEmailConfiguration(configuration);
 
         return services;
     }

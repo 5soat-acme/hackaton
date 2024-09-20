@@ -25,4 +25,9 @@ public class MedicoRepository : IMedicoRepository
     {
         return await _dbContext.Medicos.ToListAsync();
     }
+
+    public async Task<Medico?> BuscarPorId(Guid medicoId)
+    {
+        return await _dbContext.Medicos.FirstOrDefaultAsync(x => x.Id == medicoId);
+    }
 }

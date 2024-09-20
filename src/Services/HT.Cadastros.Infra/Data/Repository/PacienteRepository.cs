@@ -25,4 +25,9 @@ public sealed class PacienteRepository : IPacienteRepository
     {
         return await _dbContext.Pacientes.ToListAsync();
     }
+
+    public async Task<Paciente?> BuscarPorId(Guid pacienteId)
+    {
+        return await _dbContext.Pacientes.FirstOrDefaultAsync(x => x.Id == pacienteId);
+    }
 }

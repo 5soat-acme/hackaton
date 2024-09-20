@@ -76,6 +76,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{A6E6BBE3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT.Test.Utils", "test\Utils\HT.Test.Utils\HT.Test.Utils.csproj", "{209C1131-8F63-4B3D-A6EF-209A4C703217}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT.Infra.Commons", "src\Shared\HT.Infra.Commons\HT.Infra.Commons.csproj", "{9BC780EA-9B93-448B-A6FE-61C5B08AD656}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,10 @@ Global
 		{209C1131-8F63-4B3D-A6EF-209A4C703217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{209C1131-8F63-4B3D-A6EF-209A4C703217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{209C1131-8F63-4B3D-A6EF-209A4C703217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC780EA-9B93-448B-A6FE-61C5B08AD656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC780EA-9B93-448B-A6FE-61C5B08AD656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC780EA-9B93-448B-A6FE-61C5B08AD656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC780EA-9B93-448B-A6FE-61C5B08AD656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +197,7 @@ Global
 		{64B1D16E-86F6-4737-9DA1-7AC50D97EE44} = {CE2D91DC-C0D2-4C06-AD2D-1008752460F9}
 		{A6E6BBE3-68CE-4FEB-B682-B461D2B516EE} = {2CC35FD2-A48A-4AD2-935E-92DA5834ABF0}
 		{209C1131-8F63-4B3D-A6EF-209A4C703217} = {A6E6BBE3-68CE-4FEB-B682-B461D2B516EE}
+		{9BC780EA-9B93-448B-A6FE-61C5B08AD656} = {ADA9D63D-AF53-4AAD-9A3C-49C95B373A36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4EF48A17-2E1D-4950-95B3-8C7206DD4E91}

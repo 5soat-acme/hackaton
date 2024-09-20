@@ -7,12 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\HT.Core.Commons\HT.Core.Commons.csproj"/>
+        <ProjectReference Include="..\HT.Core.Commons\HT.Core.Commons.csproj" />
+        <ProjectReference Include="..\HT.Infra.Commons\HT.Infra.Commons.csproj" />
     </ItemGroup>
 
 </Project>
