@@ -61,7 +61,6 @@ jobs:
       if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
       run: |
         aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name hackaton
-        kubectl apply -f "./kubernetes/secret_aws.yaml"
         kubectl apply -f "./kubernetes/secret.yaml"
         kubectl apply -f "./kubernetes/hpa.yaml"
         kubectl apply -f "./kubernetes/deployment.yaml"
