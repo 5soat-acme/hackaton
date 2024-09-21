@@ -69,7 +69,7 @@ public class AgendaController : CustomControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AgendaDto>))]
     [Produces("application/json")]
     [HttpGet("medico/{medicoId}")]
-    public async Task<IActionResult> Obter([FromRoute] Guid medicoId)
+    public async Task<IActionResult> BuscarDisponivelPorMedico([FromRoute] Guid medicoId)
     {
         var medicos = await _consultarAgendaUseCase.BuscarDisponivelPorMedico(medicoId);
         return medicos is null || !medicos.Any() ? NotFound() : Respond(medicos);
