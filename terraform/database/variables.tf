@@ -3,7 +3,7 @@ variable "projectName" {
 }
 
 variable "vpcId" {
-  default = "vpc-01d061ac263248f16"
+  default = "vpc-0a4cd7ed4fdd511a5"
 }
 
 variable "vpcCidrBlocks" {
