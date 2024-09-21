@@ -6,6 +6,7 @@ using HT.Cadastros.Domain.Repository;
 using HT.Core.Commons.Communication;
 using HT.Core.Commons.Email;
 using HT.Core.Commons.UseCases;
+using Microsoft.Extensions.Logging;
 
 namespace HT.Agendas.Application.UseCases;
 
@@ -16,18 +17,21 @@ public class CriarAgendamentoUseCase : CommonUseCase, ICriarAgendamentoUseCase
     private readonly IMedicoRepository _medicoRepository;
     private readonly IPacienteRepository _pacienteRepository;
     private readonly IEmailSender _emailSender;
+    private readonly ILogger<CriarAgendamentoUseCase> _logger;
 
     public CriarAgendamentoUseCase(IAgendamentoRepository agendamentoRepository,
         IAgendaRepository agendaRepository,
         IMedicoRepository medicoRepository,
         IPacienteRepository pacienteRepository,
-        IEmailSender emailSender)
+        IEmailSender emailSender,
+        ILogger<CriarAgendamentoUseCase> logger)
     {
         _agendamentoRepository = agendamentoRepository;
         _agendaRepository = agendaRepository;
         _medicoRepository = medicoRepository;
         _pacienteRepository = pacienteRepository;
         _emailSender = emailSender;
+        _logger = logger;
     }
 
     public async Task<OperationResult<Guid>> Handle(CriarAgendamentoDto dto)
@@ -37,6 +41,9 @@ public class CriarAgendamentoUseCase : CommonUseCase, ICriarAgendamentoUseCase
         var agendamento = new Agendamento(dto.AgendaId, dto.PacienteId);
         await _agendamentoRepository.Criar(agendamento);
         await PersistData(_agendamentoRepository.UnitOfWork);
+        _logger.LogInformation("TESTE DE LOG");
+        _logger.LogInformation("TESTE DE LOG");
+        _logger.LogInformation("TESTE DE LOG");
         await EnviarEmail(dto);
         return OperationResult<Guid>.Success(agendamento.Id);
     }
