@@ -21,11 +21,6 @@ public class AgendamentoRepository : IAgendamentoRepository
         await _dbContext.Agendamentos.AddAsync(agendamento);
     }
 
-    public void Remover(Agendamento agendamento)
-    {
-        _dbContext.Agendamentos.Remove(agendamento);
-    }
-
     public async Task<Agendamento?> BuscarPorAgenda(Guid agendaId)
     {
         return await _dbContext.Agendamentos.FirstOrDefaultAsync(x => x.AgendaId == agendaId);

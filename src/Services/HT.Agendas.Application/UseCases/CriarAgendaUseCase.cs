@@ -2,7 +2,6 @@
 using HT.Agendas.Application.UseCases.Interfaces;
 using HT.Agendas.Domain.Models;
 using HT.Agendas.Domain.Repository;
-using HT.Cadastros.Domain.Repository;
 using HT.Core.Commons.Communication;
 using HT.Core.Commons.UseCases;
 

@@ -33,7 +33,7 @@ public class AcessoAppService : IAcessoAppService
         _identitySettings = settings.Value;
     }
 
-    public async Task<OperationResult<RespostaTokenAcesso>> CriarUsuario(
+    public async Task<OperationResult<Guid>> CriarUsuario(
         NovoUsuario novoUsuario)
     {
         var newApplicationUser = new ApplicationUser
@@ -57,7 +57,7 @@ public class AcessoAppService : IAcessoAppService
         foreach (var error in identityResult.Errors)
             errors.Add(error.Description);
 
-        return OperationResult<RespostaTokenAcesso>.Failure(errors);
+        return OperationResult<Guid>.Failure(errors);
     }
 
     private async Task CriarRole(string roleName)
