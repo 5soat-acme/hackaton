@@ -22,13 +22,11 @@ Este projeto foi desenvolvido para atender à atividade proposta no Hackathon da
 ## Introdução :mag:
 Foi desenvolvido um monolito modular para organizar claramente os contextos delimitados. A implementação foi estruturada em três pastas principais:
 - `Presenter`: Camada responsável por expor os serviços da aplicação. Ela recebe as requisições HTTP, valida os dados de entrada, injeta as dependências necessárias para a camada de aplicação e retorna os dados de saída ao solicitante.
-- `Services`: Contém os serviços da aplicação organizados por contextos delimitados. Cada contexto possui seu próprio núcleo (com as camadas de aplicação e domínio) e infraestrutura.
+- `Services`: Possui toda regra de domínio e de aplicação do sistema, separados separados por projetos de domínio, aplicação e infraestrutura.
 - `Commons`: Centraliza os elementos compartilhados entre os diferentes módulos, incluindo objetos de domínio e serviços de infraestrutura que podem ser utilizados por mais de um contexto delimitado.
 
 
 ## Estrutura do projeto :hammer:
-Todos os 3 microsserviços seguem o mesmo padrão. Para a explicação, apresentamos como base o microsserviço de **Pagamento**.
-
 ![img_estrutura_projeto.png](docs/img/img_estrutura_projeto.png) </br>
 
 ## Clean Architecture :o:
@@ -37,13 +35,13 @@ Todos os 3 microsserviços seguem o mesmo padrão. Para a explicação, apresent
 Cada serviço possui o seu core e sua camada de infraestrutura.
 
 - `src`
-    - `Services.*.Domain:` Projetos referentes à camada **Enterprise Business Rules** da Clean Architecture. Aqui é onde reside o domínio da aplicação, com as regras de negócio puras, sem dependências de bibliotecas ou frameworks externos. Esta camada expõe interfaces que serão implementadas nas camadas externas, seguindo o princípio de Inversão de Dependência.
+    - `HT.Domain:` Projeto referente à camada **Enterprise Business Rules** da Clean Architecture. Aqui é onde reside o domínio da aplicação, com as regras de negócio puras, sem dependências de bibliotecas ou frameworks externos. Esta camada expõe interfaces que serão implementadas nas camadas externas, seguindo o princípio de Inversão de Dependência.
 
-    - `Services.*.Infra:` Nesta camada, o padrão Repository atua como um Gateway da camada **Interface Adapters** da Clean Architecture, onde os Repositories chamam um DbContext do ORM (Entity Framework). Nesse contexto, o ORM é considerado parte da camada **Frameworks & Drivers** da Clean Architecture. Todas as regras de acesso a dados estão na camada mais externa. Se for necessário alterar a forma de acesso aos dados, basta implementar uma nova classe baseada na interface existente e utilizar a nova implementação da camada **Frameworks & Drivers**.
+    - `HT.Infra:` Nesta camada, o padrão Repository atua como um Gateway da camada **Interface Adapters** da Clean Architecture, onde os Repositories chamam um DbContext do ORM (Entity Framework). Nesse contexto, o ORM é considerado parte da camada **Frameworks & Drivers** da Clean Architecture. Todas as regras de acesso a dados estão na camada mais externa. Se for necessário alterar a forma de acesso aos dados, basta implementar uma nova classe baseada na interface existente e utilizar a nova implementação da camada **Frameworks & Drivers**.
 
-    - `Services.*.Application:` Projetos referentes à camada **Application Business Rules** da Clean Architecture. Aqui são implementados os casos de uso (UseCases) do sistema. Os UseCases recebem, via injeção de dependência, os Gateways (Repositories) e os utilizam conforme necessário, de acordo com as regras de negócio.
+    - `HT.Application:` Projeto referente à camada **Application Business Rules** da Clean Architecture. Aqui são implementados os casos de uso (UseCases) do sistema. Os UseCases recebem, via injeção de dependência, os Gateways (Repositories) e os utilizam conforme necessário, de acordo com as regras de negócio.
 
-    - `Presenter:` Contém os Controllers da camada **Interface Adapters** da Clean Architecture. Esses Controllers são responsáveis por invocar os UseCases, fornecendo todas as dependências necessárias via injeção de dependência, como, por exemplo, os Gateways (Repositories). A instanciação dos Gateways é realizada utilizando o mecanismo de Injeção de Dependência nativo do .NET. Nesse contexto, a injeção de dependência do framework é parte da camada **Frameworks & Drivers** da Clean Architecture.
+    - `HT.Api:` Contém os Controllers da camada **Interface Adapters** da Clean Architecture. Esses Controllers são responsáveis por invocar os UseCases, fornecendo todas as dependências necessárias via injeção de dependência, como, por exemplo, os Gateways (Repositories). A instanciação dos Gateways é realizada utilizando o mecanismo de Injeção de Dependência nativo do .NET. Nesse contexto, a injeção de dependência do framework é parte da camada **Frameworks & Drivers** da Clean Architecture.
 
 - `test`
     - `Unit:` Projetos com a implementação de testes unitários.

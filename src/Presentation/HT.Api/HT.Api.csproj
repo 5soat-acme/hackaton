@@ -32,11 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Services\HT.Agendas.Application\HT.Agendas.Application.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Agendas.Infra\HT.Agendas.Infra.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Cadastros.Application\HT.Cadastros.Application.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Cadastros.Infra\HT.Cadastros.Infra.csproj" />
-        <ProjectReference Include="..\..\Services\HT.Usuarios.Infra\HT.Usuarios.Infra.csproj" />
+        <ProjectReference Include="..\..\Services\HT.Application\HT.Application.csproj" />
         <ProjectReference Include="..\..\Shared\HT.Core.Commons\HT.Core.Commons.csproj" />
         <ProjectReference Include="..\..\Shared\HT.WebApi.Commons\HT.WebApi.Commons.csproj" />
     </ItemGroup>
