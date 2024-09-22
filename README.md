@@ -78,8 +78,8 @@ Execute a GitHub Action para criar a infraestrutura de banco de dados. Para isso
 ### 3. Criação da Infraestrutura EKS e Configuração do appsettings.json
 Após a criação da infraestrutura do banco de dados, o próximo passo é criar a infraestrutura do EKS e configurar a aplicação .NET.
 
-- Atualize o arquivo [variables.tf](terraform/eks/variables.tf): Insira as informações da AWS necessárias.
-- Atualize o arquivo [secret.yaml](terraform/eks/kubernetes/secret.yaml): Insira o conteúdo do arquivo `appsettings.json` da API .NET, substituindo o valor `{host}` pelo endereço do banco de dados Aurora PostgreSQL criado no passo anterior.
+- Atualize o arquivo [variables.tf](terraform/eks/variables.tf): insira as informações da AWS necessárias.
+- Atualize o arquivo [secret.yaml](terraform/eks/kubernetes/secret.yaml): insira o conteúdo do arquivo `appsettings.json` da API .NET, substituindo o valor `{host}` pelo endereço do banco de dados Aurora PostgreSQL criado no passo anterior. Também insira as configurações para envio de email. O secret deve ser informado em Base64.
 
 Exemplo de appsettings.json:
 ``` bash
@@ -90,7 +90,6 @@ Exemplo de appsettings.json:
       "Microsoft.AspNetCore": "Warning"
     }
   },
-  "AllowedHosts": "*",
   "ConnectionStrings": {
     "DefaultConnection": "Host={host};Port=5432;Database=hackaton;Username=postgres;Password=acmeacme"
   },
@@ -98,7 +97,16 @@ Exemplo de appsettings.json:
     "Secret": "E076B751-88AC-4344-A931-88ABFD665916",
     "ExpirationHours": 2,
     "Issuer": "Hackaton",
-    "ValidIn": "Hackaton-Api"
+    "ValidIn": "localhost"
+  },
+  "EmailSettings": {
+    "Host": "sandbox.smtp.mailtrap.io",
+    "Port": 587,
+    "UserName": "",
+    "Password": "",
+    "FromEmail": "health_med@example.com",
+    "FromName": "Health&Med",
+    "EnableSsl": true
   }
 }
 ```
@@ -128,7 +136,7 @@ kubectl get service -n nginx-ingress
 
 A URL de acesso será o conteúdo da coluna **EXTERNAL-IP** do serviço de tipo LoadBalancer.
 A documentação estará disponível em: 
- - EXTERNAL-IP/swagger
+ - EXTERNAL-IP/swagger/index.html
 
 # Utilização dos Endpoints :arrow_forward:
 Os acessos aos endpoints são controlados por **[Json Web Token (JWT)](https://jwt.io/)**
