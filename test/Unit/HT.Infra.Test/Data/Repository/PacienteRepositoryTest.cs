@@ -19,7 +19,7 @@ public class PacienteRepositoryTest : IDisposable
     public PacienteRepositoryTest()
     {
         var options = new DbContextOptionsBuilder<HackatonDbContext>()
-            .UseInMemoryDatabase(databaseName: "InMemoryDb")
+            .UseInMemoryDatabase(databaseName: "InMemoryDbPaciente")
             .Options;
 
         _context = new HackatonDbContext(options);
