@@ -3,19 +3,19 @@ variable "projectName" {
 }
 
 variable "vpcId" {
-  default = "vpc-0a4cd7ed4fdd511a5"
+  default = "vpc-095f2bd0fd2444f32"
 }
 
 variable "subnetA" {
-  default = "subnet-0958a3a4bf1124a21"
+  default = "subnet-013e0a84d3544eb9c"
 }
 
 variable "subnetB" {
-  default = "subnet-0217d3d68bfbcd9e3"
+  default = "subnet-07eb1c186954756d8"
 }
 
 variable "subnetC" {
-  default = "subnet-0950deeecaf4c2320"
+  default = "subnet-0c4aee3cd0b353c1c"
 }
 
 variable "labRole" {
