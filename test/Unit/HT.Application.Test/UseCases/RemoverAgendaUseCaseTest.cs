@@ -31,15 +31,15 @@ public class RemoverAgendaUseCaseTest
         var agenda = new Agenda(Guid.NewGuid(), data);
 
         var agendaRepositoryMock = _fixture.Freeze<Mock<IAgendaRepository>>();
-        agendaRepositoryMock.Setup(x => x.BuscarPorId(agenda.Id)).ReturnsAsync(agenda);
+        agendaRepositoryMock.Setup(x => x.BuscarPorIdEMedicoId(agenda.Id, agenda.MedicoId)).ReturnsAsync(agenda);
 
         var useCase = _fixture.Create<IRemoverAgendaUseCase>();
 
         // Act
-        var resultado = await useCase.Handle(agenda.Id);
+        var resultado = await useCase.Handle(agenda.Id, agenda.MedicoId);
 
         // Assert
-        agendaRepositoryMock.Verify(x => x.BuscarPorId(agenda.Id), Times.Once);
+        agendaRepositoryMock.Verify(x => x.BuscarPorIdEMedicoId(agenda.Id, agenda.MedicoId), Times.Once);
         agendaRepositoryMock.Verify(x => x.Remover(It.IsAny<Agenda>()), Times.Once);
         agendaRepositoryMock.Verify(x => x.UnitOfWork.Commit(), Times.Once);
         resultado.IsValid.Should().BeTrue();
@@ -51,17 +51,18 @@ public class RemoverAgendaUseCaseTest
     {
         // Arrange
         var agendaId = _fixture.Create<Guid>();
+        var medicoId = _fixture.Create<Guid>();
 
         var agendaRepositoryMock = _fixture.Freeze<Mock<IAgendaRepository>>();
-        agendaRepositoryMock.Setup(x => x.BuscarPorId(agendaId)).ReturnsAsync((Agenda?)null);
+        agendaRepositoryMock.Setup(x => x.BuscarPorIdEMedicoId(agendaId, medicoId)).ReturnsAsync((Agenda?)null);
 
         var useCase = _fixture.Create<IRemoverAgendaUseCase>();
 
         // Act
-        Func<Task> act = async () => await useCase.Handle(agendaId);
+        Func<Task> act = async () => await useCase.Handle(agendaId, medicoId);
 
         // Assert
-        agendaRepositoryMock.Verify(x => x.BuscarPorId(agendaId), Times.Never);
+        agendaRepositoryMock.Verify(x => x.BuscarPorIdEMedicoId(agendaId, medicoId), Times.Never);
         agendaRepositoryMock.Verify(x => x.Remover(It.IsAny<Agenda>()), Times.Never);
         agendaRepositoryMock.Verify(x => x.UnitOfWork.Commit(), Times.Never);
         await act.Should().ThrowAsync<ValidationException>().WithMessage("Agenda não existe");

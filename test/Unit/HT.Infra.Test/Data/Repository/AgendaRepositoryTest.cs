@@ -93,6 +93,24 @@ public class AgendaRepositoryTest : IDisposable
     }
 
     [Fact]
+    public async Task DeveBuscarAgendaPorIdEMedicoId()
+    {
+        // Arrange
+        string dataString = "21/09/2024 20:00:00";
+        DateTime data = DateTime.ParseExact(dataString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+        var agenda = new Agenda(Guid.NewGuid(), data);
+        var repository = _fixture.Create<IAgendaRepository>();
+        await repository.Criar(agenda);
+        await _context.Commit();
+
+        // Act
+        var result = await repository.BuscarPorIdEMedicoId(agenda.Id, agenda.MedicoId);
+
+        // Assert
+        result.Should().BeEquivalentTo(agenda);
+    }
+
+    [Fact]
     public async Task DeveBuscarAgendasDisponiveisPorMedicoPorId()
     {
         // Arrange

@@ -4,5 +4,5 @@ namespace HT.Application.UseCases.Interfaces;
 
 public interface IRemoverAgendaUseCase
 {
-    Task<OperationResult> Handle(Guid id);
+    Task<OperationResult> Handle(Guid id, Guid medicoId);
 }

@@ -28,7 +28,12 @@ public class AgendaRepository : IAgendaRepository
 
     public async Task<Agenda?> BuscarPorId(Guid agendaId)
     {
-        return await _dbContext.Agendas.FirstOrDefaultAsync(produto => produto.Id == agendaId);
+        return await _dbContext.Agendas.FirstOrDefaultAsync(x => x.Id == agendaId);
+    }
+
+    public async Task<Agenda?> BuscarPorIdEMedicoId(Guid agendaId, Guid medicoId)
+    {
+        return await _dbContext.Agendas.FirstOrDefaultAsync(x => x.Id == agendaId && x.MedicoId == medicoId);
     }
 
     public async Task<IEnumerable<Agenda>> BuscarDisponivelPorMedico(Guid medicoId)

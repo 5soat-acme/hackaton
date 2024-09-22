@@ -22,10 +22,8 @@ public class ConsultarAgendaUseCaseTest
         _fixture.Register<IConsultarAgendaUseCase>(() => new ConsultarAgendaUseCase(agendaRepositoryMock.Object));
     }
 
-
-
     [Fact]
-    public async Task DeveConsultarProdutoPorCategoria()
+    public async Task DeveConsultarAgenda()
     {
         // Arrange
         string dataString = "21/09/2024 20:00:00";

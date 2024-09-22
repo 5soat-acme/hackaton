@@ -59,9 +59,11 @@ public class AgendaControllerTest
     {
         // Arrange
         var agendaId = Guid.NewGuid();
+        var medicoId = Guid.NewGuid();
         var operationResult = OperationResult<Guid>.Success(agendaId);
+        _userAppMock.Setup(x => x.GetUserId()).Returns(medicoId);
 
-        _removerAgendaUseCaseMock.Setup(x => x.Handle(agendaId)).ReturnsAsync(operationResult);
+        _removerAgendaUseCaseMock.Setup(x => x.Handle(agendaId, medicoId)).ReturnsAsync(operationResult);
         // Act
         var resultado = await _agendaController.Remover(agendaId);
 
