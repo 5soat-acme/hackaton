@@ -1,10 +1,10 @@
-using HT.Usuarios.Infra.Data;
-using HT.Usuarios.Infra.Extensions;
 using HT.WebApi.Commons.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HT.WebApi.Commons.Identity;
 using HT.WebApi.Commons.Email;
+using HT.Infra.Data;
+using HT.Infra.Extensions;
 
 namespace HT.Api.Commons.Config;
 
@@ -15,7 +15,7 @@ public static class IdentityConfig
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped<IUserApp, UserApp>();
 
-        services.AddDbContext<UsuarioDbContext>(options =>
+        services.AddDbContext<IdentityDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddDefaultIdentity<ApplicationUser>(options =>
@@ -29,7 +29,7 @@ public static class IdentityConfig
             })
             .AddRoles<IdentityRole>()
             .AddErrorDescriber<TraducaoPortugues>()
-            .AddEntityFrameworkStores<UsuarioDbContext>()
+            .AddEntityFrameworkStores<IdentityDbContext>()
             .AddDefaultTokenProviders();
 
         services.AddJwtConfiguration(configuration);

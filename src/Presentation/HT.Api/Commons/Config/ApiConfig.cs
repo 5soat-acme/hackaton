@@ -1,8 +1,5 @@
 using System.Text.Json.Serialization;
 using HT.Api.Commons.Extensions;
-using HT.Api.Contexts.Agendas.Config;
-using HT.Api.Contexts.Cadastros.Config;
-using HT.Api.Contexts.Usuarios.Config;
 
 namespace HT.Api.Commons.Config;
 
@@ -15,9 +12,7 @@ public static class ApiConfig
         services.AddEndpointsApiExplorer();
         services.AddSwaggerConfig(env);
 
-        services.RegisterServicesCadastros(configuration);
-        services.RegisterServicesUsuarios();
-        services.RegisterServicesAgendas(configuration);
+        services.RegisterServices(configuration);
 
         services.AddIdentityConfig(configuration);
 
