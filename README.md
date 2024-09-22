@@ -54,6 +54,8 @@ Cada serviço possui o seu core e sua camada de infraestrutura.
 ### K8S
 ![diagrama_k8s.png](docs/diagramas/diagrama_k8s.png)
 
+## Diagrama Entidade Relacionamento(DER) :bookmark_tabs:
+Na pasta [docs/der](docs/der) possui os Diagramas Entidade Relacionamento.
 
 # Como executar - AWS :rocket:
 A seguir estão as instruções para executar o projeto
