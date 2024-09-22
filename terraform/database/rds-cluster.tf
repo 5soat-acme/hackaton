@@ -1,5 +1,5 @@
-resource "aws_rds_cluster" "aurora-cluster-pedido" {
-  cluster_identifier     = "${var.projectName}-pedido"
+resource "aws_rds_cluster" "aurora-cluster" {
+  cluster_identifier     = var.projectName
   engine                 = "aurora-postgresql"
   engine_version         = "15.4"
   availability_zones     = ["${var.availabilityZoneA}", "${var.availabilityZoneB}"]

@@ -1,6 +1,5 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace HT.Api.Commons.Config;
 
@@ -39,11 +38,6 @@ public static class SwaggerConfig
                     new string[] { }
                 }
             });
-
-            if (!env.IsDevelopment())
-            {
-                c.DocumentFilter<PrefixDocumentFilter>();
-            }
         });
 
         return services;
@@ -55,20 +49,5 @@ public static class SwaggerConfig
         app.UseSwaggerUI();
 
         return app;
-    }
-}
-
-public class PrefixDocumentFilter : IDocumentFilter
-{
-    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
-    {
-        var paths = new OpenApiPaths();
-
-        foreach (var path in swaggerDoc.Paths)
-        {
-            paths.Add("/pedido" + path.Key, path.Value);
-        }
-
-        swaggerDoc.Paths = paths;
     }
 }

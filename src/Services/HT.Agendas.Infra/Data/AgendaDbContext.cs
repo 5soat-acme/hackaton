@@ -1,5 +1,4 @@
 ﻿using HT.Agendas.Domain.Models;
-using HT.Core.Commons.Messages;
 using HT.Core.Commons.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -30,7 +29,6 @@ public class AgendaDbContext : DbContext, IUnitOfWork
             relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AgendaDbContext).Assembly);
-        modelBuilder.Ignore<Event>();
 
         base.OnModelCreating(modelBuilder);
     }

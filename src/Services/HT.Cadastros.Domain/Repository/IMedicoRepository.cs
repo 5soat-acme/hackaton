@@ -7,6 +7,5 @@ public interface IMedicoRepository : IRepository<Medico>
 {
     Task Criar(Medico medico);
     Task<IEnumerable<Medico>> Buscar();
-    Task<Medico?> BuscarPorEmail(string email);
-    Task<Medico?> BuscarPorCpf(string cpf);
+    Task<Medico?> BuscarPorId(Guid medicoId);
 }

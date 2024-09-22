@@ -19,15 +19,13 @@ public class UsuarioController : CustomControllerBase
     /// <summary>
     ///     Gera token de acesso para utilizar o sistema
     /// </summary>
-    /// <response code="200">Paciente cadastrado.</response>
+    /// <response code="200">Token gerado.</response>
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RespostaTokenAcesso))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [Produces("application/json")]
     [HttpPost("acessar")]
-    public async Task<IActionResult> Criar(UsuarioAcesso usuario)
+    public async Task<IActionResult> Logar(UsuarioAcesso usuario)
     {
-        if (!ModelState.IsValid) return Respond(ModelState);
-
         var result = await _acessoAppService.Identificar(usuario);
 
         if (!result.IsValid) return Respond(result.GetErrorMessages());

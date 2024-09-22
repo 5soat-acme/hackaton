@@ -15,8 +15,6 @@ public static class ApiConfig
         services.AddEndpointsApiExplorer();
         services.AddSwaggerConfig(env);
 
-        services.AddEventBusConfig();
-
         services.RegisterServicesCadastros(configuration);
         services.RegisterServicesUsuarios();
         services.RegisterServicesAgendas(configuration);
@@ -45,8 +43,6 @@ public static class ApiConfig
         app.UseIdentityConfig();
 
         app.UseMiddleware<ExceptionMiddleware>();
-
-        app.SubscribeEventHandlers();
 
         return app;
     }

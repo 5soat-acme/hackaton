@@ -2,9 +2,6 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: hackaton-api
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:

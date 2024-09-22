@@ -37,6 +37,10 @@ namespace HT.Usuarios.Infra.Migrations
                     b.Property<Guid>("CorrelacaoId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");

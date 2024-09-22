@@ -54,7 +54,7 @@ jobs:
               /d:sonar.login="${{ secrets.SONAR_TOKEN }}" \
               /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" \
               /d:sonar.host.url="https://sonarcloud.io" \
-              /d:sonar.exclusions="src/**/Migrations/**,test/**,src/Shared/**"  && \
+              /d:sonar.exclusions="src/**/Migrations/**,test/**,src/Shared/**,terraform/**,coveragereport/**,.github/**,src/**/Commons/**,src/Presentation/**/Contexts/**/Config/**"  && \
           dotnet build  && \
           dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
@@ -75,7 +75,7 @@ jobs:
     
     - name: Push image to DockerHub
       if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
-      run: docker push 5soatacme/hackaton-pedido:latest
+      run: docker push 5soatacme/hackaton:latest
   
   deploy:
     runs-on: ubuntu-latest

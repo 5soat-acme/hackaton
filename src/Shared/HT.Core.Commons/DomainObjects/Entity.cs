@@ -1,10 +1,7 @@
-using HT.Core.Commons.Messages;
-
 namespace HT.Core.Commons.DomainObjects;
 
 public abstract class Entity
 {
-    private List<Event> _notifications;
 
     protected Entity()
     {
@@ -12,24 +9,7 @@ public abstract class Entity
     }
 
     public Guid Id { get; set; }
-    public IReadOnlyCollection<Event> Notifications => _notifications?.AsReadOnly();
-
-    public void AddEvent(Event @event)
-    {
-        _notifications = _notifications ?? [];
-        _notifications.Add(@event);
-    }
-
-    public void RemoveEvent(Event @event)
-    {
-        _notifications?.Remove(@event);
-    }
-
-    public void ClearEvents()
-    {
-        _notifications?.Clear();
-    }
-
+    
     public override bool Equals(object? obj)
     {
         var compareTo = obj as Entity;

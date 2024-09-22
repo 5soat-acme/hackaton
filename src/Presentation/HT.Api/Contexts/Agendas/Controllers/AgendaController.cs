@@ -54,7 +54,7 @@ public class AgendaController : CustomControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     [Produces("application/json")]
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Remover(Guid id)
+    public async Task<IActionResult> Remover([FromRoute] Guid id)
     {
         var result = await _removerAgendaUseCase.Handle(id);
 
@@ -68,8 +68,8 @@ public class AgendaController : CustomControllerBase
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AgendaDto>))]
     [Produces("application/json")]
-    [HttpGet]
-    public async Task<IActionResult> Obter([FromQuery] Guid medicoId)
+    [HttpGet("medico/{medicoId}")]
+    public async Task<IActionResult> BuscarDisponivelPorMedico([FromRoute] Guid medicoId)
     {
         var medicos = await _consultarAgendaUseCase.BuscarDisponivelPorMedico(medicoId);
         return medicos is null || !medicos.Any() ? NotFound() : Respond(medicos);

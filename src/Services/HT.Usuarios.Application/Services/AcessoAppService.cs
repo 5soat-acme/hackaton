@@ -1,6 +1,6 @@
 using HT.Core.Commons.Communication;
+using HT.Core.Commons.Extensions;
 using HT.Core.Commons.Identity;
-using HT.Infra.Commons.Extensions;
 using HT.Usuarios.Application.DTOs.Requests;
 using HT.Usuarios.Application.DTOs.Responses;
 using HT.Usuarios.Application.Services.Interfaces;
@@ -33,7 +33,7 @@ public class AcessoAppService : IAcessoAppService
         _identitySettings = settings.Value;
     }
 
-    public async Task<OperationResult<RespostaTokenAcesso>> CriarUsuario(
+    public async Task<OperationResult<Guid>> CriarUsuario(
         NovoUsuario novoUsuario)
     {
         var newApplicationUser = new ApplicationUser
@@ -42,6 +42,7 @@ public class AcessoAppService : IAcessoAppService
             Email = novoUsuario.Email,
             EmailConfirmed = true,
             TipoAcesso = novoUsuario.TipoAcesso.ToString(),
+            Cpf = novoUsuario.Cpf,
             CorrelacaoId = novoUsuario.Id
         };
 
@@ -56,7 +57,7 @@ public class AcessoAppService : IAcessoAppService
         foreach (var error in identityResult.Errors)
             errors.Add(error.Description);
 
-        return OperationResult<RespostaTokenAcesso>.Failure(errors);
+        return OperationResult<Guid>.Failure(errors);
     }
 
     private async Task CriarRole(string roleName)

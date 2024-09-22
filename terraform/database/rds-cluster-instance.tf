@@ -1,9 +1,9 @@
-resource "aws_rds_cluster_instance" "aurora-instance-pedido" {
+resource "aws_rds_cluster_instance" "aurora-instance" {
   count                        = 1
-  identifier                   = "${var.projectName}-pedido-db-instance-${count.index}"
-  cluster_identifier           = aws_rds_cluster.aurora-cluster-pedido.id
+  identifier                   = "${var.projectName}-db-instance-${count.index}"
+  cluster_identifier           = aws_rds_cluster.aurora-cluster.id
   instance_class               = "db.t3.medium"
-  engine                       = aws_rds_cluster.aurora-cluster-pedido.engine
+  engine                       = aws_rds_cluster.aurora-cluster.engine
   performance_insights_enabled = false
   monitoring_interval          = 0
 }
