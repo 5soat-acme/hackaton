@@ -56,7 +56,8 @@ public class AgendaController : CustomControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Remover([FromRoute] Guid id)
     {
-        var result = await _removerAgendaUseCase.Handle(id);
+        var medicoId = _userApp.GetUserId()!.Value;
+        var result = await _removerAgendaUseCase.Handle(id, medicoId);
 
         return Respond(result);
     }

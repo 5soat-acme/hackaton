@@ -15,9 +15,9 @@ public class RemoverAgendaUseCase : CommonUseCase, IRemoverAgendaUseCase
         _agendaRepository = agendaRepository;
     }
 
-    public async Task<OperationResult> Handle(Guid id)
+    public async Task<OperationResult> Handle(Guid id, Guid medicoId)
     {
-        var agenda = await _agendaRepository.BuscarPorId(id);
+        var agenda = await _agendaRepository.BuscarPorIdEMedicoId(id, medicoId);
         if (agenda is null) throw new ValidationException("Agenda não existe");
         _agendaRepository.Remover(agenda!);
         await PersistData(_agendaRepository.UnitOfWork);
